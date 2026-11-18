@@ -44,8 +44,7 @@ jobs:
       - name: Install node deps
         run: |
           npm install --no-audit --no-fund
-          node --input-type=module -e "import * as T from 'three'; console.log('three r' + T.REVISION)"
-          node -e "const p=require('puppeteer'); console.log('puppeteer', p.executablePath())"
+          node -e "console.log('three', require('three/package.json').version)"
 
       - name: Smoke test render (6 frames)
         run: |
@@ -76,10 +75,20 @@ jobs:
           done
           ls out/stills
 
+      - name: Report size
+        run: |
+          du -h out/cinematic_480p.mp4
+          ffprobe -v error -show_entries format=duration,bit_rate -of default=nw=1 out/cinematic_480p.mp4
+
       - uses: actions/upload-artifact@v4
         with:
           name: cinematic-480p
-          path: |
-            out/cinematic_480p.mp4
-            out/stills/*.jpg
+          path: out/cinematic_480p.mp4
+          compression-level: 0
+          retention-days: 30
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: preview-stills
+          path: out/stills/*.jpg
           retention-days: 30

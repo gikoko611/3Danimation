@@ -11,7 +11,7 @@ fs.mkdirSync(OUT_DIR, { recursive: true });
 
 const ONLY_FRAMES = Number(process.env.ONLY_FRAMES || 0);   // 0 = full render
 const START_AT = Number(process.env.START_AT || 0);          // seconds
-const QUALITY = Number(process.env.QUALITY || 90);
+const QUALITY = Number(process.env.QUALITY || 88);
 const OUT_FILE = path.join(OUT_DIR, process.env.OUT_NAME || 'silent.mp4');
 
 function ffmpeg(args, name) {
@@ -62,7 +62,8 @@ console.log(`[render] frames=${totalFrames} start=${startFrame} fps=${meta.fps} 
 const enc = ffmpeg([
   '-hide_banner', '-loglevel', 'error', '-y',
   '-f', 'image2pipe', '-framerate', String(meta.fps), '-i', 'pipe:0',
-  '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '21',
+  '-c:v', 'libx264', '-preset', 'medium', '-tune', 'film',
+  '-crf', '24', '-maxrate', '1500k', '-bufsize', '3000k',
   '-pix_fmt', 'yuv420p', '-g', String(meta.fps * 2),
   '-movflags', '+faststart',
   OUT_FILE,
