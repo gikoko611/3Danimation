@@ -44,7 +44,8 @@ jobs:
       - name: Install node deps
         run: |
           npm install --no-audit --no-fund
-          node -e "console.log('three', require('three/package.json').version)"
+          node --input-type=module -e "import * as T from 'three'; console.log('three r' + T.REVISION)"
+          node -e "const p=require('puppeteer'); console.log('puppeteer', p.executablePath())"
 
       - name: Smoke test render (6 frames)
         run: |
