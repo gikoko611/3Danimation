@@ -21,24 +21,22 @@ const MIME = {
 export function serve(port = 0, root = ROOT) {
   const server = http.createServer((req, res) => {
     const urlPath = decodeURIComponent((req.url || '/').split('?')[0]);
-    let file = path.join(root, urlPath === '/' ? '/public/index.html' : urlPath);
-    if (urlPath === '/timeline.json') file = path.join(root, 'public/timeline.json');
-    if (!file.startsWith(root)) {
-      res.writeHead(403).end('forbidden');
+    const candidates = urlPath === '/'
+      ? [path.join(root, 'public/index.html')]
+      : [path.join(root, 'public', urlPath), path.join(root, urlPath)];
+
+    const file = candidates.find((f) => f.startsWith(root) && fs.existsSync(f) && fs.statSync(f).isFile());
+    if (!file) {
+      res.writeHead(404, { 'content-type': 'text/plain' }).end('not found: ' + urlPath);
       return;
     }
-    fs.stat(file, (err, st) => {
-      if (err || !st.isFile()) {
-        res.writeHead(404, { 'content-type': 'text/plain' }).end('not found: ' + urlPath);
-        return;
-      }
-      res.writeHead(200, {
-        'content-type': MIME[path.extname(file)] || 'application/octet-stream',
-        'content-length': st.size,
-        'cache-control': 'no-store',
-      });
-      fs.createReadStream(file).pipe(res);
+    const st = fs.statSync(file);
+    res.writeHead(200, {
+      'content-type': MIME[path.extname(file)] || 'application/octet-stream',
+      'content-length': st.size,
+      'cache-control': 'no-store',
     });
+    fs.createReadStream(file).pipe(res);
   });
   return new Promise((resolve) => {
     server.listen(port, '127.0.0.1', () => resolve({ server, port: server.address().port }));
