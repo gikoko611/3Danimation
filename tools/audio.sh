@@ -3,10 +3,17 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-OUT=out/audio
+TIMELINE=${TIMELINE:-public/timeline.json}
+case "$TIMELINE" in
+  *pirates*) AUDIO_DIR=out/audio-pirates ;;
+  *)         AUDIO_DIR=out/audio ;;
+esac
+OUT="$AUDIO_DIR"
 rm -rf "$OUT"; mkdir -p "$OUT/en"
 SCENE_SECONDS=10
-DURATION=$(node -e "const t=require('./public/timeline.json');console.log(t.scenes.length*t.sceneSeconds)")
+jq_tl() { node -e "const t=JSON.parse(require('fs').readFileSync(process.argv[1],'utf8'));$1" "$TIMELINE"; }
+DURATION=$(jq_tl "console.log(t.scenes.length*t.sceneSeconds)")
+echo "[audio] timeline=$TIMELINE"
 VOICE=${VOICE:-en-US-AriaNeural}
 RATE=${RATE:--8%}
 DG_MODEL=${DG_MODEL:-aura-2-draco-en}
@@ -47,10 +54,10 @@ dg_speak() { # text outfile  -- retries on 429/5xx
   return 1
 }
 
-N=$(node -e "console.log(require('./public/timeline.json').scenes.length)")
+N=$(jq_tl "console.log(t.scenes.length)")
 for i in $(seq 0 $((N-1))); do
   IDX=$(printf "%02d" "$i")
-  TEXT=$(node -e "console.log(require('./public/timeline.json').scenes[$i].en)")
+  TEXT=$(jq_tl "console.log(t.scenes[$i].en)")
   FILE="$OUT/en/$IDX.wav"
   ok=0
   if [ "$TTS_ENGINE" = deepgram ]; then

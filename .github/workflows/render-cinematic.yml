@@ -1,17 +1,22 @@
-name: Render cinematic (480p / 30 scenes)
+name: Render cinematic film
 
 on:
   workflow_dispatch:
     inputs:
-      voice:
-        description: 'edge-tts voice'
-        default: 'en-US-AriaNeural'
+      film:
+        description: 'Which film'
+        type: choice
+        default: 'light'
+        options: ['light', 'pirates']
+      voice_model:
+        description: 'Deepgram voice model'
+        default: ''
       smoke_frames:
         description: 'Only render N frames (0 = full 5 min film)'
         default: '0'
 
 concurrency:
-  group: cinematic-${{ github.ref }}
+  group: cinematic-${{ github.ref }}-${{ inputs.film }}
   cancel-in-progress: true
 
 jobs:
@@ -19,9 +24,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 150
     env:
-      VOICE: ${{ inputs.voice || 'en-US-AriaNeural' }}
+      VOICE: en-US-AriaNeural
       RATE: '-8%'
       ONLY_FRAMES: ${{ inputs.smoke_frames || '0' }}
+      FILM: ${{ inputs.film == 'pirates' && 'timeline-pirates.json' || 'timeline.json' }}
+      TIMELINE: ${{ inputs.film == 'pirates' && 'public/timeline-pirates.json' || 'public/timeline.json' }}
+      DG_MODEL: ${{ inputs.voice_model != '' && inputs.voice_model || (inputs.film == 'pirates' && 'aura-2-jupiter-en' || 'aura-2-draco-en') }}
+      AUDIO_DIR: ${{ inputs.film == 'pirates' && 'out/audio-pirates' || 'out/audio' }}
+      FILM_NAME: ${{ inputs.film == 'pirates' && 'The_Salty_Sausage' || 'The_Light_We_Build' }}
 
     steps:
       - uses: actions/checkout@v4
@@ -32,14 +42,12 @@ jobs:
 
       - name: Install ffmpeg + espeak fallback
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg espeak-ng fonts-dejavu-core
+          sudo apt-get install -y -qq ffmpeg espeak-ng
           ffmpeg -version | head -1
 
-      - name: Install edge-tts (natural voice, optional)
+      - name: Install edge-tts (fallback voice, optional)
         continue-on-error: true
-        run: |
-          python3 -m pip install --quiet --upgrade edge-tts && edge-tts --list-voices >/dev/null && echo "edge-tts ready"
+        run: python3 -m pip install --quiet --upgrade edge-tts
 
       - name: Install node deps
         run: |
@@ -61,12 +69,12 @@ jobs:
       - name: Mux audio + video
         run: |
           ffmpeg -hide_banner -loglevel error -y \
-            -i out/silent.mp4 -i out/audio/mix.m4a \
+            -i out/silent.mp4 -i "$AUDIO_DIR/mix.m4a" \
             -c:v copy -c:a aac -b:a 160k -shortest -movflags +faststart \
-            -metadata title="The Light We Build — Powered by အိုင်ကိုကို" \
+            -metadata title="$FILM_NAME — Powered by အိုင်ကိုကို" \
             out/cinematic_480p.mp4
-          ffprobe -v error -show_entries format=duration,size,bit_rate -of default=nw=1 out/cinematic_480p.mp4
-          ls -lh out/cinematic_480p.mp4
+          ffprobe -v error -show_entries format=duration,bit_rate -of default=nw=1 out/cinematic_480p.mp4
+          du -h out/cinematic_480p.mp4
 
       - name: Extract preview stills
         run: |
@@ -74,22 +82,16 @@ jobs:
           for t in 3 33 63 93 123 153 183 213 243 273 297; do
             ffmpeg -hide_banner -loglevel error -y -ss "$t" -i out/cinematic_480p.mp4 -frames:v 1 "out/stills/t${t}.jpg"
           done
-          ls out/stills
-
-      - name: Report size
-        run: |
-          du -h out/cinematic_480p.mp4
-          ffprobe -v error -show_entries format=duration,bit_rate -of default=nw=1 out/cinematic_480p.mp4
 
       - uses: actions/upload-artifact@v4
         with:
-          name: cinematic-480p
+          name: cinematic-480p-${{ inputs.film || 'light' }}
           path: out/cinematic_480p.mp4
           compression-level: 0
           retention-days: 30
 
       - uses: actions/upload-artifact@v4
         with:
-          name: preview-stills
+          name: preview-stills-${{ inputs.film || 'light' }}
           path: out/stills/*.jpg
           retention-days: 30

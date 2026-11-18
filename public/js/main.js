@@ -1,5 +1,7 @@
 import * as THREE from 'three';
-import { buildScene } from './visuals.js';
+const TL = new URLSearchParams(location.search).get('t') || 'timeline.json';
+const visualsMod = TL.includes('pirates') ? await import('./visuals-pirates.js') : await import('./visuals.js');
+const buildScene = visualsMod.buildScene;
 
 const FPS = 24;
 const SCENE_SECONDS = 10;
@@ -143,7 +145,7 @@ function setTime(t) {
 }
 
 async function boot() {
-  timeline = await (await fetch('/timeline.json')).json();
+  timeline = await (await fetch('/' + TL)).json();
   wmEl.textContent = timeline.watermark;
   if (await document.fonts.ready) { /* fonts loaded */ }
   await document.fonts.load('400 25px MM');

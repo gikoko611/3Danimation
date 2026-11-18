@@ -3,7 +3,7 @@ import * as THREE from 'three';
 // ---------------------------------------------------------------- helpers
 const TAU = Math.PI * 2;
 
-function rng(seed) {
+export function rng(seed) {
   let s = seed >>> 0;
   return () => {
     s = (s * 1664525 + 1013904223) >>> 0;
@@ -11,7 +11,7 @@ function rng(seed) {
   };
 }
 
-function noise3(x, y, z, seed) {
+export function noise3(x, y, z, seed) {
   return (
     Math.sin(x * 1.7 + seed) * Math.cos(y * 1.3 - seed * 0.7) * 0.5 +
     Math.sin(y * 2.3 + z * 1.1 + seed * 1.9) * 0.3 +
@@ -19,7 +19,7 @@ function noise3(x, y, z, seed) {
   );
 }
 
-function glow(color, emissiveIntensity = 1.1, opts = {}) {
+export function glow(color, emissiveIntensity = 1.1, opts = {}) {
   return new THREE.MeshStandardMaterial({
     color: new THREE.Color(color),
     emissive: new THREE.Color(color),
@@ -33,7 +33,7 @@ function glow(color, emissiveIntensity = 1.1, opts = {}) {
   });
 }
 
-function pointCloud(count, radius, colors, size = 2.2, seed = 1) {
+export function pointCloud(count, radius, colors, size = 2.2, seed = 1) {
   const r = rng(seed);
   const positions = new Float32Array(count * 3);
   const cols = new Float32Array(count * 3);
@@ -65,7 +65,7 @@ function pointCloud(count, radius, colors, size = 2.2, seed = 1) {
   return new THREE.Points(geo, mat);
 }
 
-function addLights(group, palette) {
+export function addLights(group, palette) {
   const [bg, mid, a1, a2] = palette;
   group.add(new THREE.AmbientLight(new THREE.Color(mid), 0.55));
   const p1 = new THREE.PointLight(new THREE.Color(a1), 320, 400, 2);

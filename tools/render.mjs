@@ -12,6 +12,7 @@ fs.mkdirSync(OUT_DIR, { recursive: true });
 const ONLY_FRAMES = Number(process.env.ONLY_FRAMES || 0);   // 0 = full render
 const START_AT = Number(process.env.START_AT || 0);          // seconds
 const QUALITY = Number(process.env.QUALITY || 88);
+const FILM = process.env.FILM || 'timeline.json';
 const OUT_FILE = path.join(OUT_DIR, process.env.OUT_NAME || 'silent.mp4');
 
 function ffmpeg(args, name) {
@@ -48,10 +49,10 @@ page.on('console', (m) => {
 page.on('pageerror', (e) => console.error('[page exception]', e.message));
 
 await page.setViewport({ width: 854, height: 480, deviceScaleFactor: 1 });
-await page.goto(`http://127.0.0.1:${port}/index.html`, { waitUntil: 'load', timeout: 60000 });
+await page.goto(`http://127.0.0.1:${port}/index.html?t=${FILM}`, { waitUntil: 'load', timeout: 60000 });
 await page.waitForFunction('window.__ready === true', { timeout: 120000 });
 const meta = await page.evaluate(() => window.__meta);
-console.log('[meta]', JSON.stringify(meta));
+console.log('[meta]', FILM, JSON.stringify(meta));
 
 const totalFrames = ONLY_FRAMES > 0
   ? ONLY_FRAMES
