@@ -1,0 +1,10 @@
+node_modules/
+out/
+*.log
+*.pid
+.DS_Store
+.env
+.deepgram_key
+*.wav
+!public/**/*.wav
+audio-debug/

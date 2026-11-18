@@ -1,0 +1,84 @@
+name: Render cinematic (480p / 30 scenes)
+
+on:
+  workflow_dispatch:
+    inputs:
+      voice:
+        description: 'edge-tts voice'
+        default: 'en-US-AriaNeural'
+      smoke_frames:
+        description: 'Only render N frames (0 = full 5 min film)'
+        default: '0'
+
+concurrency:
+  group: cinematic-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    env:
+      VOICE: ${{ inputs.voice || 'en-US-AriaNeural' }}
+      RATE: '-8%'
+      ONLY_FRAMES: ${{ inputs.smoke_frames || '0' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install ffmpeg + espeak fallback
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng fonts-dejavu-core
+          ffmpeg -version | head -1
+
+      - name: Install edge-tts (natural voice, optional)
+        continue-on-error: true
+        run: |
+          python3 -m pip install --quiet --upgrade edge-tts && edge-tts --list-voices >/dev/null && echo "edge-tts ready"
+
+      - name: Install node deps
+        run: |
+          npm install --no-audit --no-fund
+          node -e "console.log('three', require('three/package.json').version)"
+
+      - name: Smoke test render (6 frames)
+        run: |
+          ONLY_FRAMES=6 OUT_NAME=smoke.mp4 node tools/render.mjs
+          ffprobe -v error -show_entries format=duration -of csv=p=0 out/smoke.mp4
+
+      - name: Build narration + score
+        run: bash tools/audio.sh
+
+      - name: Render full film
+        run: node tools/render.mjs
+
+      - name: Mux audio + video
+        run: |
+          ffmpeg -hide_banner -loglevel error -y \
+            -i out/silent.mp4 -i out/audio/mix.m4a \
+            -c:v copy -c:a aac -b:a 160k -shortest -movflags +faststart \
+            -metadata title="The Light We Build — Powered by အိုင်ကိုကို" \
+            out/cinematic_480p.mp4
+          ffprobe -v error -show_entries format=duration,size,bit_rate -of default=nw=1 out/cinematic_480p.mp4
+          ls -lh out/cinematic_480p.mp4
+
+      - name: Extract preview stills
+        run: |
+          mkdir -p out/stills
+          for t in 3 33 63 93 123 153 183 213 243 273 297; do
+            ffmpeg -hide_banner -loglevel error -y -ss "$t" -i out/cinematic_480p.mp4 -frames:v 1 "out/stills/t${t}.jpg"
+          done
+          ls out/stills
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cinematic-480p
+          path: |
+            out/cinematic_480p.mp4
+            out/stills/*.jpg
+          retention-days: 30

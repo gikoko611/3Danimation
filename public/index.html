@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>THE LIGHT WE BUILD — three.js cinematic</title>
+<style>
+  @font-face { font-family: 'MM'; src: url('/fonts/myanmar-400.woff2') format('woff2'); font-weight: 400; }
+  @font-face { font-family: 'MM'; src: url('/fonts/myanmar-700.woff2') format('woff2'); font-weight: 700; }
+  @font-face { font-family: 'EN'; src: url('/fonts/latin-700.woff2') format('woff2'); font-weight: 700; }
+
+  html, body { margin: 0; padding: 0; background: #000; overflow: hidden; }
+  #stage {
+    position: relative; width: 854px; height: 480px; overflow: hidden;
+    background: radial-gradient(circle at 50% 55%, #101a4a 0%, #050a20 55%, #000005 100%);
+  }
+  canvas { display: block; width: 854px; height: 480px; }
+
+  /* cinematic grade overlays */
+  #vignette {
+    position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 42%, rgba(0,0,0,.62) 100%);
+    mix-blend-mode: multiply;
+  }
+  #grain {
+    position: absolute; inset: 0; pointer-events: none; opacity: .055;
+    background-image: repeating-conic-gradient(#fff 0% 25%, #000 0% 50%);
+    background-size: 3px 3px;
+    animation: g .9s steps(2) infinite;
+  }
+  @keyframes g { from { transform: translateY(0px); } to { transform: translateY(3px); } }
+  .bar { position: absolute; left: 0; width: 100%; height: 26px; background: #000; z-index: 6; }
+  #barTop { top: 0; } #barBot { bottom: 0; }
+
+  /* text layers */
+  #subtitle {
+    position: absolute; left: 0; right: 0; bottom: 46px; z-index: 5; text-align: center;
+    font-family: 'MM', 'Noto Sans Myanmar', sans-serif; font-weight: 400;
+    font-size: 25px; line-height: 1.55; color: #fff; padding: 0 54px;
+    text-shadow: 0 2px 12px rgba(0,0,0,.95), 0 0 3px rgba(0,0,0,.9);
+    opacity: 0; transition: none; letter-spacing: .2px;
+  }
+  #subtitle .hl { color: #ffd166; }
+
+  #sceneTitle {
+    position: absolute; top: 42px; left: 40px; z-index: 5;
+    font-family: 'EN', sans-serif; font-weight: 700; font-size: 13px;
+    letter-spacing: 3.2px; text-transform: uppercase; color: #ffffff;
+    opacity: .78; text-shadow: 0 1px 8px rgba(0,0,0,.9);
+  }
+  #sceneTitle span { color: #7fd4ff; }
+
+  #watermark {
+    position: absolute; right: 22px; bottom: 38px; z-index: 7;
+    display: flex; align-items: center; gap: 7px;
+    font-family: 'MM', 'Noto Sans Myanmar', sans-serif; font-weight: 700; font-size: 15px;
+    color: rgba(255,255,255,.94); padding: 5px 11px 6px; border-radius: 999px;
+    background: rgba(4, 8, 24, .42); border: 1px solid rgba(255,255,255,.22);
+    box-shadow: 0 2px 14px rgba(0,0,0,.55);
+    backdrop-filter: blur(2px);
+  }
+  #watermark .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: radial-gradient(circle, #7fffd4 0%, #22d3ee 60%, #0ea5e9 100%);
+    box-shadow: 0 0 8px #22d3ee;
+  }
+
+  #hud {
+    position: absolute; left: 40px; bottom: 34px; z-index: 5;
+    font-family: 'EN', sans-serif; font-size: 11px; letter-spacing: 1.6px;
+    color: rgba(255,255,255,.5);
+  }
+  #progress { position: absolute; left: 0; bottom: 26px; height: 2px; z-index: 6;
+    background: linear-gradient(90deg, #4cc9f0, #f72585); }
+  #fade { position: absolute; inset: 0; background: #000; z-index: 8; pointer-events: none; opacity: 1; }
+</style>
+<script type="importmap">
+{ "imports": { "three": "/node_modules/three/build/three.module.js" } }
+</script>
+</head>
+<body>
+<div id="stage">
+  <canvas id="c" width="854" height="480"></canvas>
+  <div id="vignette"></div>
+  <div id="grain"></div>
+  <div class="bar" id="barTop"></div>
+  <div class="bar" id="barBot"></div>
+  <div id="sceneTitle">SCENE <span id="sceneNo">01</span> — <em id="sceneName"></em></div>
+  <div id="subtitle"></div>
+  <div id="watermark"><span class="dot"></span><span id="wmText">Powered by အိုင်ကိုကို</span></div>
+  <div id="hud"><span id="timecode">00:00</span> / 05:00</div>
+  <div id="progress" style="width:0%"></div>
+  <div id="fade"></div>
+</div>
+<script type="module" src="/js/main.js"></script>
+</body>
+</html>

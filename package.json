@@ -1,0 +1,19 @@
+{
+  "name": "gikoko-3d-cinematic",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "30-scene three.js cinematic rendered headlessly to a 480p 5-minute film with English narration, Myanmar subtitles and a watermark",
+  "scripts": {
+    "serve": "node tools/server.mjs",
+    "render": "node tools/render.mjs",
+    "smoke": "ONLY_FRAMES=6 node tools/render.mjs",
+    "audio": "bash tools/audio.sh"
+  },
+  "dependencies": {
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "puppeteer": "^24.0.0"
+  }
+}
