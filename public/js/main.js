@@ -5,7 +5,7 @@ const W=480,H=854,FPS=24,SCENE_SECONDS=10;
 const canvas=document.getElementById('c'),subtitleEl=document.getElementById('subtitle'),sceneNoEl=document.getElementById('sceneNo'),sceneNameEl=document.getElementById('sceneName'),fadeEl=document.getElementById('fade'),timecodeEl=document.getElementById('timecode'),progressEl=document.getElementById('progress'),stageEl=document.getElementById('stage');
 const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'high-performance'});
 renderer.setPixelRatio(1);renderer.setSize(W,H,false);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;
-const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(43,W/H,.1,1500);
+const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(43,W/H,.1,1500);\n// Explicit cinematic lighting: MeshStandardMaterial scenes render nearly black without lights.\nscene.add(new THREE.HemisphereLight(0xffd9c5,0x26304a,2.0));\nconst keyLight=new THREE.DirectionalLight(0xffffff,3.2);keyLight.position.set(-8,16,12);scene.add(keyLight);\nconst fillLight=new THREE.DirectionalLight(0x6bdcff,1.35);fillLight.position.set(10,8,-8);scene.add(fillLight);\nconst rimLight=new THREE.DirectionalLight(0xff4f9a,1.1);rimLight.position.set(0,10,-18);scene.add(rimLight);
 let timeline,currentIndex=-1,currentBuilt=null;
 const clamp=v=>Math.max(0,Math.min(1,v));
 function dispose(){if(!currentBuilt)return;currentBuilt.group.traverse(o=>{if(o.geometry)o.geometry.dispose();if(o.material){if(Array.isArray(o.material))o.material.forEach(m=>m.dispose());else o.material.dispose();}});scene.remove(currentBuilt.group);currentBuilt=null;}
