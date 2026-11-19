@@ -1,11 +1,11 @@
-<div align="center">
+# GTA 6: Vice City Chaos — 3D Comedy Film
+Five-minute vertical parody animation rendered with Three.js, Puppeteer and FFmpeg.
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+- 480 × 854 (9:16), 24 fps, 300 seconds
+- English narration (Edge TTS, automatic espeak-ng fallback)
+- Burmese subtitles (Myanmar Unicode font embedded in the project)
+- Procedural Vice City environment and stylized original characters
+- Watermark: Powered by G.အိုင်ကိုကို
 
-  <h1>Built with AI Studio</h2>
-
-  <p>The fastest path from prompt to production with Gemini.</p>
-
-  <a href="https://aistudio.google.com/apps">Start building</a>
-
-</div>
+## Render
+Run the **Render GTA 6 Vice City Comedy** workflow in GitHub Actions. The artifact contains the MP4, SRT subtitles and project source ZIP.
