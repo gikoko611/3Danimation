@@ -1,0 +1,400 @@
+{
+  "title": "GTA 6: VICE CITY CHAOS",
+  "fps": 24,
+  "width": 480,
+  "height": 854,
+  "sceneSeconds": 10,
+  "watermark": "Powered by G.အိုင်ကိုကို",
+  "scenes": [
+    {
+      "type": "viceCity",
+      "cam": "dolly",
+      "action": "store",
+      "palette": [
+        "#07101d",
+        "#182b49",
+        "#ff4da6",
+        "#27e8ff"
+      ],
+      "en": "Jason kicks open the Gas N Go doors wearing a giant pink flamingo mask. Nobody move! This is a robbery!",
+      "mm": "တစ်ယောက်မှ မလှုပ်နဲ့။ ဒါ ဓားပြတိုက်တာပဲ။ ပန်းရောင် ဖလမင်ဂိုခေါင်းစွပ်ကြီးနဲ့ ဂျေဆန်က ဆိုင်တံခါးကို ကန်ဖွင့်လိုက်တယ်။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "orbit",
+      "action": "store",
+      "palette": [
+        "#0c1022",
+        "#3a174e",
+        "#ff4fa3",
+        "#ffd166"
+      ],
+      "en": "Hand over the cash and every limited edition neon energy drink! This is a very serious criminal operation!",
+      "mm": "ပိုက်ဆံတွေနဲ့ Limited Edition Neon Energy Drink တွေအကုန် ထုတ်ပေး။ ဒါက အရမ်းအရေးကြီးတဲ့ ရာဇဝတ်မှုစစ်ဆင်ရေးပဲ။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "crane",
+      "action": "store",
+      "palette": [
+        "#10172b",
+        "#2a3158",
+        "#ff7b54",
+        "#42d9ff"
+      ],
+      "en": "The cashier barely looks up. Welcome to Vice City, buddy. You're the third robbery today. Don't touch my coffee machine.",
+      "mm": "ကောင်တာဝန်ထမ်းက ခေါင်းတောင် မမော့ဘူး။ Vice City မှ ကြိုဆိုပါတယ်။ ဒီနေ့ဆို ခင်ဗျားတို့ တတိယမြောက် ဓားပြပဲ။ ကော်ဖီစက်တော့ မထိနဲ့။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "dolly",
+      "action": "store",
+      "palette": [
+        "#07101d",
+        "#182b49",
+        "#ff4da6",
+        "#27e8ff"
+      ],
+      "en": "Lucia stares at Jason. We came for the safe! Why are you filling the bag with flamingo toys?",
+      "mm": "လူစီယာက ဂျေဆန်ကို စိုက်ကြည့်လိုက်တယ်။ ငါတို့လာတာ မီးခံသေတ္တာဖောက်ဖို့။ ဘာလို့ ဖလမင်ဂိုအရုပ်တွေ ထည့်နေတာလဲ။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "orbit",
+      "action": "store",
+      "palette": [
+        "#0c1022",
+        "#3a174e",
+        "#ff4fa3",
+        "#ffd166"
+      ],
+      "en": "Jason hugs three plush flamingos. Babe, they're collectibles! Their value will go up three hundred percent!",
+      "mm": "ဂျေဆန်က ဖလမင်ဂိုအရုပ်သုံးရုပ်ကို ဖက်ထားတယ်။ ချစ်လေး၊ ဒါတွေက စုဆောင်းရတဲ့ အရုပ်တွေလေ။ တန်ဖိုး ၃၀၀ ရာခိုင်နှုန်း တက်လာမှာ။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "dolly",
+      "action": "getaway",
+      "palette": [
+        "#10172b",
+        "#2a3158",
+        "#ff7b54",
+        "#42d9ff"
+      ],
+      "en": "Police sirens echo outside. Lucia runs to the sports car. Jason, move! Start the engine!",
+      "mm": "အပြင်မှာ ရဲကားဥဩသံတွေ ကြားလာရတယ်။ လူစီယာက ပြိုင်ကားဆီ ပြေးသွားတယ်။ ဂျေဆန်၊ မြန်မြန်လာ။ ကားစက်နှိုးတော့။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "orbit",
+      "action": "getaway",
+      "palette": [
+        "#07101d",
+        "#182b49",
+        "#ff4da6",
+        "#27e8ff"
+      ],
+      "en": "Jason checks every pocket, then proudly pulls out... a banana. Uh, Lucia? I may have left the keys inside.",
+      "mm": "ဂျေဆန်က အိတ်ကပ်တိုင်း စမ်းရှာပြီး ဂုဏ်ယူစွာနဲ့ ငှက်ပျောသီးတစ်လုံး ထုတ်ပြတယ်။ လူစီယာရေ၊ ကားသော့ကို ဆိုင်ထဲမှာ မေ့ခဲ့သလိုပဲ။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "crane",
+      "action": "police",
+      "palette": [
+        "#0c1022",
+        "#3a174e",
+        "#ff4fa3",
+        "#ffd166"
+      ],
+      "en": "A police cruiser drifts into the parking lot. Officer Davis steps out holding an iced coffee. Hands where I can see them!",
+      "mm": "ရဲကားတစ်စီးက ကားပါကင်ထဲကို Drift ဆွဲဝင်လာတယ်။ အရာရှိ ဒေးဗစ်က ကော်ဖီအေးကိုင်ပြီး ဆင်းလာတယ်။ လက်မြှောက်ထား။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "dolly",
+      "action": "police",
+      "palette": [
+        "#10172b",
+        "#2a3158",
+        "#ff7b54",
+        "#42d9ff"
+      ],
+      "en": "Officer Davis squints. Wait... is that a flamingo mask? In twenty twenty-six? That's a fashion felony!",
+      "mm": "အရာရှိ ဒေးဗစ်က မျက်လုံးကျဉ်းပြီး ကြည့်လိုက်တယ်။ နေပါဦး။ အဲဒါ ဖလမင်ဂိုခေါင်းစွပ်လား။ ၂၀၂၆ ခုနှစ်ကြီးမှာလား။ ဖက်ရှင်ရာဇဝတ်မှုကြီးပဲ။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "crane",
+      "action": "swamp",
+      "palette": [
+        "#07101d",
+        "#182b49",
+        "#ff4da6",
+        "#27e8ff"
+      ],
+      "en": "Suddenly, swamp EDM shakes the street. Here comes Bobby, the legendary Florida Man, riding a giant armored alligator!",
+      "mm": "ရုတ်တရက် ရွှံ့နွံ EDM သီချင်းသံက လမ်းတစ်ခုလုံး တုန်ခါသွားတယ်။ ဒဏ္ဍာရီလာ Florida Man ဘော်ဘီက သံချပ်ကာ မိကျောင်းကြီးကို စီးပြီး ပေါ်လာတယ်။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "orbit",
+      "action": "swamp",
+      "palette": [
+        "#0c1022",
+        "#3a174e",
+        "#ff4fa3",
+        "#ffd166"
+      ],
+      "en": "Bobby yells, Yee-haw! Did somebody order an UberX? Chomp, my boy, give them the premium ride!",
+      "mm": "ဘော်ဘီက ဟီးဟားလို့ အော်တယ်။ UberX ခေါ်ထားတဲ့သူ ရှိလား။ ငါ့ကောင် ချွမ့်ပ်ရေ၊ VIP ခရီးစဉ်လေး ပေးလိုက်စမ်း။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "dolly",
+      "action": "swamp",
+      "palette": [
+        "#10172b",
+        "#2a3158",
+        "#ff7b54",
+        "#42d9ff"
+      ],
+      "en": "Officer Davis drops his coffee. Hey! That alligator just swallowed a city siren! Spit out government property!",
+      "mm": "အရာရှိ ဒေးဗစ်ရဲ့ ကော်ဖီခွက် လွတ်ကျသွားတယ်။ ဟေ့။ အဲဒီမိကျောင်းက မြို့တော်ပိုင် ဥဩစက်ကို မျိုချလိုက်ပြီ။ ပြန်ထွေးထုတ်စမ်း။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "crane",
+      "action": "swamp",
+      "palette": [
+        "#07101d",
+        "#182b49",
+        "#ff4da6",
+        "#27e8ff"
+      ],
+      "en": "Chomp's belly flashes red and blue. The siren is now coming from inside the alligator. Nobody is trained for this.",
+      "mm": "ချွမ့်ပ်ရဲ့ ဗိုက်က အနီနဲ့ အပြာရောင် လင်းလက်လာတယ်။ ဥဩသံက မိကျောင်းဗိုက်ထဲက ထွက်နေပြီ။ ဒီလိုအခြေအနေကို ဘယ်သူမှ သင်တန်းမတက်ဖူးဘူး။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "orbit",
+      "action": "swamp",
+      "palette": [
+        "#0c1022",
+        "#3a174e",
+        "#ff4fa3",
+        "#ffd166"
+      ],
+      "en": "Bobby tips his cowboy hat. Hop on, folks! Chomp runs on fried chicken and pure American confidence!",
+      "mm": "ဘော်ဘီက Cowboy ဦးထုပ်ကို မလိုက်တယ်။ တက်ကြတော့ မိတ်ဆွေတို့။ ချွမ့်ပ်က ကြက်ကြော်နဲ့ အမေရိကန်ယုံကြည်မှုစွမ်းအားနဲ့ မောင်းတာ။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "dolly",
+      "action": "chase",
+      "palette": [
+        "#10172b",
+        "#2a3158",
+        "#ff7b54",
+        "#42d9ff"
+      ],
+      "en": "Lucia climbs onto the alligator. Why are we escaping on a reptile? Jason, hold on to those flamingos!",
+      "mm": "လူစီယာက မိကျောင်းပေါ် တက်လိုက်တယ်။ ငါတို့ ဘာလို့ တွားသွားသတ္တဝါကြီးနဲ့ ထွက်ပြေးနေရတာလဲ။ ဂျေဆန်၊ ဖလမင်ဂိုအရုပ်တွေ မြဲမြဲကိုင်ထား။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "orbit",
+      "action": "chase",
+      "palette": [
+        "#07101d",
+        "#182b49",
+        "#ff4da6",
+        "#27e8ff"
+      ],
+      "en": "Chomp races down Ocean Drive at seventy miles per hour. Jason plays a flamingo like an electric guitar.",
+      "mm": "ချွမ့်ပ်က Ocean Drive လမ်းမပေါ်မှာ တစ်နာရီ မိုင် ၇၀ နှုန်းနဲ့ ပြေးနေတယ်။ ဂျေဆန်က ဖလမင်ဂိုအရုပ်ကို Electric Guitar လို တီးနေတယ်။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "crane",
+      "action": "chase",
+      "palette": [
+        "#0c1022",
+        "#3a174e",
+        "#ff4fa3",
+        "#ffd166"
+      ],
+      "en": "Jason shouts, Woohoo! Ten out of ten graphics! Best vehicle in the whole game!",
+      "mm": "ဂျေဆန်က ဟူးဟူးလို့ အော်တယ်။ ရုပ်ထွက် ဆယ်မှတ်မှာ ဆယ်မှတ်ပဲ။ ဒီဂိမ်းထဲက အကောင်းဆုံးယာဉ်ပဲ။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "dolly",
+      "action": "chase",
+      "palette": [
+        "#10172b",
+        "#2a3158",
+        "#ff7b54",
+        "#42d9ff"
+      ],
+      "en": "A police helicopter hovers overhead. Suspects on the giant lizard, pull over into the designated swamp lane!",
+      "mm": "ရဲရဟတ်ယာဉ်က အပေါ်မှာ ဝဲနေတယ်။ မိကျောင်းကြီးပေါ်က တရားခံများ၊ သတ်မှတ်ထားတဲ့ ရွှံ့နွံလမ်းကြောထဲ ကပ်ရပ်ပါ။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "orbit",
+      "action": "chase",
+      "palette": [
+        "#07101d",
+        "#182b49",
+        "#ff4da6",
+        "#27e8ff"
+      ],
+      "en": "Bobby laughs. Sorry, officer! Chomp only stops for snacks and very emotional country music!",
+      "mm": "ဘော်ဘီက ရယ်လိုက်တယ်။ ဆောရီးပဲ အရာရှိရေ။ ချွမ့်ပ်က မုန့်စားချိန်နဲ့ စိတ်ထိခိုက်စေတဲ့ Country သီချင်းတွေမှာပဲ ရပ်တယ်။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "crane",
+      "action": "chase",
+      "palette": [
+        "#0c1022",
+        "#3a174e",
+        "#ff4fa3",
+        "#ffd166"
+      ],
+      "en": "The wanted level jumps to six stars. Lucia looks at Jason. You forgot the keys, but somehow stole a crocodile taxi!",
+      "mm": "Wanted Level က ကြယ်ခြောက်ပွင့်အထိ တက်သွားတယ်။ လူစီယာက ဂျေဆန်ကို ကြည့်တယ်။ နင် ကားသော့မေ့ခဲ့ပေမဲ့ မိကျောင်း Taxi တစ်စီးတော့ ခိုးနိုင်ခဲ့တယ်နော်။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "dolly",
+      "action": "chase",
+      "palette": [
+        "#10172b",
+        "#2a3158",
+        "#ff7b54",
+        "#42d9ff"
+      ],
+      "en": "Jason grins. See? I told you the flamingo plan would work. Lucia replies, That was not a plan!",
+      "mm": "ဂျေဆန်က ပြုံးပြီး ပြောတယ်။ တွေ့လား။ ဖလမင်ဂိုအစီအစဉ် အလုပ်ဖြစ်မယ်လို့ ငါပြောသားပဲ။ လူစီယာက အဲဒါ အစီအစဉ်မဟုတ်ဘူးလို့ ပြန်အော်တယ်။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "orbit",
+      "action": "chase",
+      "palette": [
+        "#07101d",
+        "#182b49",
+        "#ff4da6",
+        "#27e8ff"
+      ],
+      "en": "Chomp jumps over a traffic jam. A taxi driver calmly honks, then gives the alligator a one-star review.",
+      "mm": "ချွမ့်ပ်က ကားပိတ်နေတဲ့နေရာကို ခုန်ကျော်သွားတယ်။ Taxi ယာဉ်မောင်းတစ်ယောက်က အေးဆေးပဲ ဟွန်းတီးပြီး မိကျောင်းကို ကြယ်တစ်ပွင့် Review ပေးလိုက်တယ်။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "crane",
+      "action": "chase",
+      "palette": [
+        "#0c1022",
+        "#3a174e",
+        "#ff4fa3",
+        "#ffd166"
+      ],
+      "en": "The helicopter spotlight catches Bobby's cowboy hat. Bobby waves like a celebrity at a parade.",
+      "mm": "ရဟတ်ယာဉ် Spotlight က ဘော်ဘီရဲ့ Cowboy ဦးထုပ်ပေါ် ကျရောက်သွားတယ်။ ဘော်ဘီက အခမ်းအနားမှာ နာမည်ကြီးတစ်ယောက်လို လက်ဝှေ့ယမ်းပြနေတယ်။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "dolly",
+      "action": "chase",
+      "palette": [
+        "#10172b",
+        "#2a3158",
+        "#ff7b54",
+        "#42d9ff"
+      ],
+      "en": "Officer Davis radios headquarters. Dispatch, cancel the roadblocks. I am not chasing a reptile through another swamp.",
+      "mm": "အရာရှိ ဒေးဗစ်က ရုံးချုပ်ကို ရေဒီယိုနဲ့ ဆက်သွယ်တယ်။ လမ်းပိတ်ဆို့မှုတွေ ဖျက်လိုက်တော့။ နောက်ထပ် ရွှံ့နွံထဲ မိကျောင်းကို မလိုက်ချင်တော့ဘူး။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "crane",
+      "action": "finale",
+      "palette": [
+        "#07101d",
+        "#182b49",
+        "#ff4da6",
+        "#27e8ff"
+      ],
+      "en": "At last, the crew reaches the beach pier. Bobby feeds Chomp a spicy chicken tender. Nitro mode activated!",
+      "mm": "နောက်ဆုံးမှာ အဖွဲ့သားတွေ ကမ်းခြေဆိပ်ခံတံတားကို ရောက်လာတယ်။ ဘော်ဘီက ချွမ့်ပ်ကို အစပ်ကြက်သားကျွေးလိုက်တယ်။ Nitro Mode ဖွင့်ပြီ။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "orbit",
+      "action": "finale",
+      "palette": [
+        "#0c1022",
+        "#3a174e",
+        "#ff4fa3",
+        "#ffd166"
+      ],
+      "en": "Chomp rockets off the pier toward the purple and gold sunset. Everyone screams, including the alligator.",
+      "mm": "ချွမ့်ပ်က ခရမ်းရောင်နဲ့ ရွှေရောင် နေဝင်ချိန်ဆီ တံတားပေါ်ကနေ ဒုံးပျံလို ခုန်ထွက်သွားတယ်။ မိကျောင်းပါမကျန် အားလုံး အော်ဟစ်နေကြတယ်။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "dolly",
+      "action": "finale",
+      "palette": [
+        "#10172b",
+        "#2a3158",
+        "#ff7b54",
+        "#42d9ff"
+      ],
+      "en": "Bobby yells, Hold your hats! We're jumping straight into the next patch update!",
+      "mm": "ဘော်ဘီက ဦးထုပ်တွေ မြဲမြဲကိုင်ထားကြလို့ အော်တယ်။ ငါတို့ နောက်ထွက်မယ့် Game Update ထဲ တန်းခုန်ချတော့မယ်။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "crane",
+      "action": "finale",
+      "palette": [
+        "#07101d",
+        "#182b49",
+        "#ff4da6",
+        "#27e8ff"
+      ],
+      "en": "Mid-air, Lucia looks terrified. Jason gives a peace sign. Chomp smiles in neon sunglasses.",
+      "mm": "လေထဲမှာ လူစီယာက ကြောက်လန့်နေတယ်။ ဂျေဆန်က Peace Sign လုပ်ပြတယ်။ ချွမ့်ပ်က Neon နေကာမျက်မှန်နဲ့ ပြုံးနေတယ်။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "orbit",
+      "action": "finale",
+      "palette": [
+        "#0c1022",
+        "#3a174e",
+        "#ff4fa3",
+        "#ffd166"
+      ],
+      "en": "Jason whispers, Trust me, Lucia. This was all part of the master plan. Lucia says, You forgot the keys!",
+      "mm": "ဂျေဆန်က တိုးတိုးပြောတယ်။ ငါ့ကိုယုံပါ လူစီယာ။ ဒါတွေအားလုံး ငါ့ရဲ့ မဟာစီမံကိန်းပဲ။ လူစီယာက ကားသော့မေ့ခဲ့တာကို ပြန်သတိပေးတယ်။"
+    },
+    {
+      "type": "viceCity",
+      "cam": "dolly",
+      "action": "finale",
+      "palette": [
+        "#10172b",
+        "#2a3158",
+        "#ff7b54",
+        "#42d9ff"
+      ],
+      "en": "The screen freezes. GTA Six: Coming whenever Florida Man says so. Powered by G.အိုင်ကိုကို!",
+      "mm": "ရုပ်ပုံက Freeze ဖြစ်သွားတယ်။ GTA 6 - Florida Man သဘောကျတဲ့အချိန်မှ ထွက်မည်။ Powered by G.အိုင်ကိုကို။"
+    }
+  ]
+}
