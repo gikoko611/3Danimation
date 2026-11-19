@@ -1,0 +1,62 @@
+name: Render GTA 6 Vice City Comedy
+on:
+  push:
+    branches: [gta6-vice-city]
+  workflow_dispatch:
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install system tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg espeak-ng python3 python3-pip
+          python3 -m pip install --break-system-packages edge-tts
+      - name: Install Node dependencies
+        run: |
+          npm install
+          npx puppeteer browsers install chrome
+      - name: Generate English voiceover and cinematic music
+        env:
+          TIMELINE: public/gta6-timeline.json
+          VOICE: en-US-AriaNeural
+        run: bash tools/audio.sh
+      - name: Render vertical 3D animation
+        env:
+          FILM: gta6-timeline.json
+          QUALITY: 82
+        run: node tools/render.mjs
+      - name: Mux narration and create Burmese subtitle file
+        run: |
+          ffmpeg -hide_banner -loglevel error -y -i out/silent.mp4 -i out/audio/mix.m4a -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 160k -t 300 -movflags +faststart GTA6_Vice_City_Chaos_480x854.mp4
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const t=JSON.parse(fs.readFileSync('public/gta6-timeline.json','utf8'));
+          const stamp=s=>{const ms=Math.round(s*1000),h=Math.floor(ms/3600000),m=Math.floor(ms%3600000/60000),sec=Math.floor(ms%60000/1000),z=ms%1000;return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0')+','+String(z).padStart(3,'0')};
+          const rows=t.scenes.map((s,i)=>(i+1)+'\n'+stamp(i*10+.35)+' --> '+stamp((i+1)*10-.5)+'\n'+s.mm).join('\n\n');
+          fs.writeFileSync('GTA6_Vice_City_Chaos_MM.srt',rows+'\n','utf8');
+          NODE
+      - name: Package video, subtitles and project source
+        run: |
+          mkdir -p package/project-source
+          cp GTA6_Vice_City_Chaos_480x854.mp4 GTA6_Vice_City_Chaos_MM.srt package/
+          cp -r public tools package.json package/project-source/
+          cp README.md package/project-source/
+          cat > package/README.txt <<'EOF'
+          GTA 6: Vice City Chaos — 5-minute comedy 3D animation
+          Video: 480x854 vertical, 24 fps, English voiceover, Burmese subtitles.
+          Watermark: Powered by G.အိုင်ကိုကို
+          Project source is in project-source/.
+          EOF
+          cd package && zip -qr ../GTA6_Vice_City_Chaos_FULL_PACKAGE.zip .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: GTA6-Vice-City-Chaos-Full-Package
+          path: GTA6_Vice_City_Chaos_FULL_PACKAGE.zip
+          retention-days: 14
